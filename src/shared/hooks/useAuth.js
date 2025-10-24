@@ -1,4 +1,4 @@
--m import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import { authAPI } from '../../api/index.js';
 
 const AuthContext = createContext();
