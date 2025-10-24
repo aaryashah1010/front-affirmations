@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react';
+-m import { useState, useEffect, createContext, useContext } from 'react';
 import { authAPI } from '../../api/index.js';
 
 const AuthContext = createContext();
@@ -25,16 +25,10 @@ export const AuthProvider = ({ children }) => {
           setUser(response.user);
         }
       } catch (error) {
-        // If the token is invalid (401) remove stored tokens.
-        // For network or other errors, don't immediately clear tokens so
-        // users don't lose session state on transient failures or misconfigured
-        // API URLs (useful for deployments where the API env var may be missing).
         console.error('Auth initialization error:', error);
-        if (error?.response?.status === 401) {
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('refresh_token');
-          localStorage.removeItem('user');
-        }
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('user');
       } finally {
         setLoading(false);
       }
